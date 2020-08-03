@@ -3,7 +3,7 @@
 " -----------------------------------------------------------------------------
 
 " Automatic reloading of init.vim
-autocmd! bufwritepost init.vim source %
+autocmd! bufwritepost init.vim nested source %
 
 set nocompatible
 filetype off
@@ -28,18 +28,19 @@ set shiftwidth=4
 set tabstop=4 
 set nowrap 
 set colorcolumn=81
+set number
 
 set noshowmode 
 set laststatus=2
 
 " Display relative(to the cursor) numberline while in Normal mode, 
 " show absolute line numbers in insert mode
-set number relativenumber
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave    * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber  
-augroup END
+"set number relativenumber
+"augroup numbertoggle
+"    autocmd!
+"    autocmd BufEnter,FocusGained,InsertLeave    * set relativenumber
+"    autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber  
+"augroup END
 
 
 " -----------------------------------------------------------------------------
@@ -55,7 +56,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/seoul256.vim'
     " statusline 
     Plug 'itchyny/lightline.vim'
-
+    " file explorer
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 
@@ -81,6 +83,18 @@ nnoremap <F2>  :noh<CR>
 " keep formating when pasting
 set pastetoggle=<F3>
 set clipboard=unnamed
+
+
+
+" -----------------------------------------------------------------------------
+"   NERDTree settings 
+" -----------------------------------------------------------------------------
+map <F5> :NERDTreeToggle<CR>
+map <F6> :NERDTreeFocus<CR>
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
 
 " -----------------------------------------------------------------------------
 "   Coc-vim CONFIGURATIONS https://github.com/neoclide/coc.nvim
