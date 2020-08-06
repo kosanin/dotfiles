@@ -13,6 +13,8 @@ if !has('gui_running')
 endif
 set background=light
 
+filetype plugin indent on
+
 " -----------------------------------------------------------------------------
 "  UTF-8 
 " -----------------------------------------------------------------------------
@@ -25,10 +27,14 @@ set termencoding=utf-8
 " -----------------------------------------------------------------------------
 set expandtab
 set shiftwidth=4
-set tabstop=4 
-set nowrap 
-set colorcolumn=81
-set number
+set tabstop=4        
+set nowrap          " don't wrap lines of length > 80 
+set colorcolumn=81  " highlight 81th column
+set number          " display line numbers
+set hidden          
+set splitright      " create new window on the right side on vertical split
+set showtabline=2   " show line containing all opened files
+set splitbelow      " create new window below current one on horizontal split
 
 set noshowmode 
 set laststatus=2
@@ -51,26 +57,32 @@ call plug#begin('~/.vim/plugged')
     " coc.nvim
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " cpp highlight
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
+    "Plug 'jackguo380/vim-lsp-cxx-highlight'
     " colorscheme
-    Plug 'junegunn/seoul256.vim'
+    Plug 'ueaner/molokai'
+    "Plug 'junegunn/seoul256.vim'
     " statusline 
     Plug 'itchyny/lightline.vim'
     " file explorer
     Plug 'preservim/nerdtree'
 call plug#end()
 
-
 " -----------------------------------------------------------------------------
 "  COLORSCHEME
 " -----------------------------------------------------------------------------
-colo seoul256-light
+colo molokai
 
+" -----------------------------------------------------------------------------
+"  LIGHTLINE
+" -----------------------------------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " c++ syntax highlighting
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
+"let g:cpp_class_scope_highlight = 1
+"let g:cpp_member_variable_highlight = 1
+"let g:cpp_class_decl_highlight = 1
 
 " -----------------------------------------------------------------------------
 "   KEY (UN)MAPPING 
@@ -82,9 +94,31 @@ nnoremap <F2>  :noh<CR>
 
 " keep formating when pasting
 set pastetoggle=<F3>
-set clipboard=unnamed
+set clipboard=unnamedplus
 
+nnoremap <F4>  <C-w>n:term<CR>
 
+" toUpper in insert mode
+inoremap <C-u> <ESC>viwUea
+inoremap <C-l> <ESC>viwuea
+
+" save with ctrl + s
+nnoremap <C-s> :w<CR>
+
+" Better window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" exit terminal mode with Esc
+tnoremap <Esc> <C-\><C-n>
+
+" Use alt + hjkl to resize windows
+nnoremap <M-j>    :resize -2<CR>
+nnoremap <M-k>    :resize +2<CR>
+nnoremap <M-h>    :vertical resize -2<CR>
+nnoremap <M-l>    :vertical resize +2<CR>
 
 " -----------------------------------------------------------------------------
 "   NERDTree settings 
@@ -147,10 +181,14 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
