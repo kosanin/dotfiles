@@ -6,6 +6,5 @@ Usage:
 
 ```
 ln -s A/dotfiles/nvim/ .config/nvim/
-
 ```
 
