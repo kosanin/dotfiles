@@ -10,7 +10,7 @@
   },
   {
     "key": "alt+1",
-    "command": "workbench.view.explorer",
+    "command": "workbench.view.explorer"
   },
   {
     "key": "alt+2",
