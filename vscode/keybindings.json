@@ -1,0 +1,49 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+space",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "alt+1",
+    "command": "workbench.view.explorer",
+  },
+  {
+    "key": "alt+2",
+    "command": "-workbench.action.openEditorAtIndex2"
+  }, 
+  {
+    "key": "alt+2",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "alt+3",
+    "command": "workbench.view.debug"
+  },
+  {
+    "key": "alt+4",
+    "command": "gitlens.walkthrough.gitlensInspect"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+  },
+  {
+    "key": "alt+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.peekDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  {
+    "key": "space k",
+    "command": "togglePeekWidgetFocus",
+    "when": "inReferenceSearchEditor || referenceSearchVisible"
+  }
+]

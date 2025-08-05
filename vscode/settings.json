@@ -1,0 +1,17 @@
+{
+    "files.insertFinalNewline": true,
+    "editor.tabSize": 2,
+    "workbench.settings.applyToAllProfiles": [
+        "editor.tabSize"
+    ],
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "workbench.activityBar.location": "bottom",
+    "editor.fontWeight": "500",
+    "editor.fontFamily": "monospace",
+    "telemetry.feedback.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "workbench.colorTheme": "Rosé Pine (no italics)",
+    "editor.accessibilityPageSize": 500,
+    "editor.minimap.enabled": false
+}
